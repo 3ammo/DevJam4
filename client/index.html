@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html id="data-ng-app" data-ng-app="eventsApp">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Siemens Seminar</title>
+
+	<link href="css/pure-min.css" rel="stylesheet">
+	<link href="css/default.css" rel="stylesheet">
+
+	<script src="js/angular.min.js" type="text/javascript"></script>
+	<script src="js/jquery-2.0.2.min.js" type="text/javascript"></script>
+	<script src="js/date.js" type="text/javascript"></script>
+	<script src="js/app.js" type="text/javascript"></script>
+</head>	
+<body 
+data-ng-controller="appCtrl"
+data-ng-init="viewHome()">
+
+	<div 
+	id="home"
+	data-ng-show="session.viewHome">
+		<div class="header">
+			<div 
+			class="eventOverview"
+			data-ng-repeat="event in filteredEvents"
+			data-ng-click="viewEvent(event, false)">
+				<div class="header">
+					<img data-ng-src="{{event.image}}" alt="Logo">
+					<h1>{{event.title}}</h1>
+				</div>
+				<div class="footer">
+					<h2>{{event.site.name}}</h2>
+					<h2>{{event.startDate.toLocaleString()}} to {{event.endDate.toLocaleString().split(",")[1].trim()}}</h2>
+				</div>
+			</div>
+		</div>
+		
+		<div class="footer">
+			<button>
+				My Events
+			</button>
+			<button id="sortDate">
+				Sort By Date
+				<select class="hide">
+					<option value="This week"></option>}
+					<option value="This month"></option>}
+					<option value="This year"></option>}
+				</select>
+			</button>
+			<button class="sortSite">
+				Sort By Site
+				<select class="hide">
+					<option value="Orlando"></option>}
+					<option value="Charlotte"></option>}
+				</select>
+			</button>
+			<button class="create"
+			data-ng-click="viewEvent(null, true)">
+				Create Event
+			</button>
+		</div>
+	</div>
+
+	<!-- -->
+
+	<div 
+	id="event"
+	data-ng-show="session.viewEvent">
+		<form class="header">
+			<fieldset class="row">
+				<label for="title"></label>
+				<input type="text" name="title" disabled 
+				placeholder="Title"
+				data-ng-model="currentEvent.title">
+			</fieldset>
+			<fieldset>
+				<label for="date">Date</label>
+				<input type="date" name="date" disabled
+				data-ng-model="currentEvent.date">
+				<label for="startTime">Start Time</label>
+				<input type="time" name="startTime" disabled
+				data-ng-model="currentEvent.startTime">
+				<label for="endTime">End Time</label>
+				<input type="time" name="endTime" disabled
+				data-ng-model="currentEvent.endTime">
+			</fieldset>
+			<fieldset>
+				<select name="site"
+				data-ng-model="currentEvent.site"
+				data-ng-options="item.name for item in sites">
+				</select>
+				<label for="address">Address</label>
+				<input type="text" name="address" disabled
+				placeholder="Address"
+				data-ng-model="currentEvent.site.address">
+				<input type="text" name="location" disabled
+				data-ng-model="currentEvent.site.address2">
+			</fieldset>
+			<fieldset>
+				<label for="details"></label>
+				<textarea name="details"></textarea>
+			</fieldset>
+			<div class="presenters">
+				<div class="presenter">
+					
+				</div>
+			</div>
+			<div 
+			id="attendence"
+			data-ng-show="session.rateEvent">
+				
+			</div>
+			<div 
+			id="survey"
+			data-ng-show="session.rateEvent">
+				
+			</div>
+		</form>
+		<div class="footer">
+			<button 
+			id="return"
+			data-ng-click="viewHome()">
+				Return
+			</button>
+			<button 
+			id="join"
+			data-ng-hide="session.editEvent">
+				Attend Event
+			</button>
+			<button 
+			id="submit"
+			data-ng-show="session.editEvent"
+			data-ng-click="submitEvent()">
+				Sumbit Event
+			</button>
+		</div>
+	</div>
+</body>
+</html>
