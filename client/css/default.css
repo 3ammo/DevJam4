@@ -54,14 +54,35 @@ body>div>.footer {
 	display: flex;
 }
 
-#home>.footer>button {
+#home>.footer>* {
 	flex: 0 0 25%;
 }
 
+#home>.footer>div {
+	overflow: auto;
+}
+
+#home>.footer>div>button {
+	width: 100%;
+	padding: 5px;
+}
+
+.active {
+	background-color: #DEE;
+}
+
 #home>.footer>button:nth-child(3n+1) {
-	background-color: #AAA;
+	background-color: #CBA;
 }
 
 #event>.footer>button {
 	flex: 0 0 50%;
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+
+textarea {
+	height: 300px;
 }
