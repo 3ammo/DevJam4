@@ -26,21 +26,30 @@ data-ng-init="viewHome()">
 			class="eventOverview"
 			data-ng-repeat="event in filteredEvents"
 			data-ng-click="viewEvent(event, false)">
-				<div class="header">
-					<img data-ng-src="{{event.image}}" alt="Logo" class="hide">
-					<h1>{{event.title}}</h1>
+				<div class="header pure-g">
+					<div class="pure-u-1 pure-u-md-4-5">
+						<h2>{{formatDate(event.date)}} from {{event.startTime}} to {{event.endTime}}</h2>
+					</div>
+					<div class="pure-u-1 pure-u-md-1-5" style="margin: auto;">
+						<img data-ng-src="{{event.image}}" alt="Logo">
+					</div>
 				</div>
-				<div class="footer">
-					<h2>{{event.site.name}}</h2>
-					<h2>{{event.startDate.toLocaleString()}} to {{event.endDate.toLocaleString().split(",")[1].trim()}}</h2>
+				<div class="pure-g">
+					<div class="pure-u-1 pure-u-md-4-5">
+						<h1>{{event.title}}</h1>
+					</div>
+					<div class="pure-u-1 pure-u-md-1-5" style="text-align: right;">
+						<h1 style="color: #DCB751;">{{event.site.name}}
+						<h3>{{event.location}}</h3></h1>
+					</div>
 				</div>
 			</div>
 		</div>
 		
 		<div class="footer">
 			<button
-			class="pure-button-active">
-				My Events
+			class="pure-button-active orange-gradient">
+				Past Events
 			</button>
 			<div>
 				<button
@@ -61,7 +70,7 @@ data-ng-init="viewHome()">
 				</button>
 			</div>
 			<button
-			class='pure-button-active'
+			class='pure-button-active orange-gradient'
 			data-ng-click="viewEvent(null, true)">
 				Create Event
 			</button>
@@ -74,8 +83,8 @@ data-ng-init="viewHome()">
 	id="event"
 	data-ng-show="session.viewEvent">
 		<form class="header pure-form pure-form-stacked">
-			<fieldset class="row">
-				<input type="text" name="title" required readonly
+			<fieldset>
+				<input type="text" name="title" readonly
 				style="font-size: Larger"
 				placeholder="Title"
 				class="readonly pure-input-1"
@@ -85,19 +94,19 @@ data-ng-init="viewHome()">
 				<div class="pure-g">
 					<div class="pure-u-1 pure-u-md-1-3">
 						<label for="date">Date</label>
-						<input type="date" name="date" readonly required
+						<input type="date" name="date" readonly
 						class="readonly pure-u-1"
 						data-ng-model="currentEvent.date">
 					</div>
 					<div class="pure-u-1 pure-u-md-1-3">
 						<label for="startTime">Start Time</label>
-						<input type="time" name="startTime" readonly required
+						<input type="time" name="startTime" readonly
 						class="readonly pure-u-1"
 						data-ng-model="currentEvent.startTime">
 					</div>
 					<div class="pure-u-1 pure-u-md-1-3">
 						<label for="endTime">End Time</label>
-						<input type="time" name="endTime" readonly required
+						<input type="time" name="endTime" readonly
 						class="readonly pure-u-1"
 						data-ng-model="currentEvent.endTime">
 					</div>
@@ -105,7 +114,7 @@ data-ng-init="viewHome()">
 			</fieldset>
 			<fieldset data-ng-show="session.editEvent">
 				<label for="site">Site</label>
-				<select name="site" required
+				<select name="site"
 				data-ng-model="currentEvent.site"
 				data-ng-options="item.name for item in sites">
 				</select>
@@ -124,7 +133,7 @@ data-ng-init="viewHome()">
 					</div>
 					<div class="pure-u-1 pure-u-md-1-2">
 						<label for="location">Location</label>
-						<input type="text" name="location" readonly required
+						<input type="text" name="location" readonly
 						class="readonly pure-u-1"
 						placeholder="Room or Location"
 						data-ng-model="currentEvent.location">
@@ -132,38 +141,68 @@ data-ng-init="viewHome()">
 				</div>
 			</fieldset>
 			<fieldset>
+				<label for="hosts">Host</label>
+				<div class="pure-g">
+					<div class="pure-u-1 pure-u-md-1-2">
+						<input type="text" name="hosts" readonly
+						class="readonly pure-u-1"
+						placeholder="Host Name"
+						data-ng-model="host.name">
+					</div>
+					<div class="pure-u-1 pure-u-md-1-2">
+						<input type="text" readonly
+						class="readonly pure-u-1"
+						placeholder="Host Email"
+						data-ng-model="host.email">
+					</div>
+				</div>
+			</fieldset>
+<!-- 			<fieldset>
+				<div class="pure-g">
+					<label for="speakers" class="pure-u-1-2">Speakers</label>
+					<input type="button" value="+Speaker"
+					class="pure-u-1-2"
+					data-ng-click="addSpeaker()">
+				</div>
+				<div class="pure-g"
+				data-ng-repeat="speaker in currentEvent.speakers">
+					<div class="pure-u-1 pure-u-md-1-2">
+						<input type="text" name="speakers" readonly
+						class="readonly pure-u-1"
+						placeholder="Speaker Name"
+						data-ng-model="speaker.name">
+					</div>
+					<div class="pure-u-1 pure-u-md-1-2">
+						<input type="text" readonly
+						class="readonly pure-u-1"
+						placeholder="Speaker Email"
+						data-ng-model="speaker.email">
+					</div>
+				</div>
+			</fieldset> -->
+			<fieldset>
 				<label for="details">Details</label>
 				<textarea name="details" style="resize: none" readonly
 				class="readonly pure-input-1"
 				placeholder="Please provide additional details regarding your event"
 				data-ng-model="currentEvent.details"></textarea>
 			</fieldset>
-			<fieldset>
+			<fieldset data-ng-show="session.editEvent">
 				<label>Tags</label>
 				<div
 				class="pure-u-md-1-3"
-				data-ng-repeat="tag in currentEvent.tags">
+				data-ng-repeat="tag in tags">
 					<label class="pure-checkbox">
 						<input type="checkbox"
-						class="disabled" 
 						data-ng-model="tag.selected">
 						{{tag.name}}
 					</label>
 				</div>
 			</fieldset>
-			<fieldset>
-				<label>Speakers</label>
-				<a ng-href="{{speakers[0].url}}">
-					<button class="pure-u-md-1-2">
-						<img data-ng-src="{{speakers[0].img}}" alt="broke" href="">
-						{{speakers[0].name}}
-					</button>
-				</a>
-			</fieldset>
 			<fieldset
 			id="attendence"
 			data-ng-show="session.rateEvent">
-				Did you attend this event?
+				<label>Did you attend this event?</label>
 				<input type="radio" name="attendence" value="true"> Yes <br/>
 				<input type="radio" name="attendence" value="false"> No <br/>
 			</fieldset>
@@ -185,16 +224,19 @@ data-ng-init="viewHome()">
 		<div class="footer">
 			<button 
 			id="return"
+			class="pure-button-active orange-gradient"
 			data-ng-click="viewHome()">
 				Return
 			</button>
 			<button 
 			id="join"
+			class="pure-button-active orange-gradient"
 			data-ng-hide="session.editEvent">
 				Attend Event
 			</button>
 			<button 
 			id="submit"
+			class="pure-button-active orange-gradient"
 			data-ng-show="session.editEvent"
 			data-ng-click="submitEvent()">
 				Sumbit Event

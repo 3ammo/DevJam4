@@ -3,16 +3,17 @@
 }
 
 body {
-	background-color: #333;
+	background-color: #CCC;
 }
 
 body>div>.header {
 	height: 90%;
-	width: 100%;
+	width: 95%;
 	position: absolute;
 	overflow: auto;
 	display: flex;
 	flex-direction: column;
+	padding: 0px 2.5%;
 }
 
 #home>.header>.eventOverview {
@@ -22,7 +23,7 @@ body>div>.header {
 	background-color: #DDD;
 }
 #home>.header>.eventOverview:nth-child(2n) {
-	background-color: #CCC;
+	background-color: #EEE;
 }
 
 #home>.header>.eventOverview>.header>img {
@@ -68,7 +69,7 @@ body>div>.footer {
 }
 
 .active {
-	background-color: #DEE;
+	background-color: #BCC;
 }
 
 #home>.footer>button:nth-child(3n+1) {
@@ -83,6 +84,40 @@ body>div>.footer {
 	display: none;
 }
 
+.text-right {
+	text-align: right;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+	margin: auto;
+	padding: auto;
+}
+
 textarea {
 	height: 300px;
+}
+
+fieldset {
+	margin-top: 10px;
+}
+
+.orange-gradient {
+	background-image: 
+		linear-gradient(
+			#EEE, #EACF95
+		);
+}
+
+.blue-gradient {
+	background-image: 
+		linear-gradient(
+			#EEE, #57BF82
+		);
+}
+
+html, button, input, select, textarea,
+.pure-g [class *= "pure-u"] {
+    font-family: arial, sans-serif;
 }

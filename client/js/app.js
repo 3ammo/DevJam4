@@ -40,38 +40,59 @@ var tags = [{
 	selected: true
 }, {
 	name: 'Disability Support Network',
-	selected: false
+	selected: true
 }, {
 	name: 'GREEN',
-	selected: false
+	selected: true
 }, {
 	name: 'Hispanic Resource Group',
-	selected: false
+	selected: true
 }, {
 	name: 'NEW@Siemens',
-	selected: false
+	selected: true
 }, {
 	name: 'Veteran’s Resource Group',
-	selected: false
+	selected: true
 }, {
 	name: 'Women’s Information Network',
-	selected: false
+	selected: true
 }, {
 	name: 'Black Resource Group',
-	selected: false
+	selected: true
 }, {
 	name: 'BRIDGE',
-	selected: false
+	selected: true
 }];
 
 var speakers = [{
 	name: 'Jacob Osterhout',
-	url: 'https://social.siemens.com/users/280864-jacobosterhout',
-	img: 'https://social.siemens.com/api/attachments/163955/stream/web_article_xl_2014_09_17_devjam_article-photo.jpg'
+	url: '',
+	img: ''
 }];
 
 var events = [{
+	title : "Engineering Week - DevJam Competition Launch",
+	site : sites[0],
+	date : "2015-02-23",
+	startTime: "09:00",
+	endTime: "10:00",
+	image : 'assets/Siemens.png',
+	details: 'Very cool event',
+	location: 'Q1 2W31/32',
+	tags: tags,
+
+}, {
 	title : "Engineering Week",
+	site : sites[0],
+	date : "2015-02-04",
+	startTime: "13:00",
+	endTime: "15:00",
+	image : 'assets/Siemens.png',
+	details: 'Very cool event',
+	location: 'Room 2E23',
+	tags: tags
+}, {
+	title : "Engineering Week Something Something Something Something",
 	site : sites[0],
 	date : "2015-02-04",
 	startTime: "13:00",
@@ -130,6 +151,7 @@ function createEvent() {
 		startTime: "13:00",
 		endTime: "15:00",
 		image: "",
+		hosts: {name: "", email: ""},
 		tags: jQuery.extend({}, tags)
 	}
 }
@@ -179,8 +201,6 @@ eventsApp.controller('appCtrl', function($scope){
 			$scope.currentEvent = createEvent();
 
 			$('.readonly').removeAttr('readonly');
-			console.log($('.disabled'))
-			$('.disabled').removeAttr('disabled');
 		} else {
 			$scope.session.viewHome = false;
 			$scope.session.viewEvent = true;
@@ -189,9 +209,8 @@ eventsApp.controller('appCtrl', function($scope){
 			$scope.currentEvent = event;
 
 			$('.readonly').attr('readonly');
-			$('.disabled').attr('disabled');
 			
-			if(event.startDate < new Date()) {
+			if(Date.parse(event.date + " " + event.startTime) < Date.now()) {
 				$scope.session.rateEvent = true;
 			} else {
 				$scope.session.rateEvent = false;
@@ -221,4 +240,16 @@ eventsApp.controller('appCtrl', function($scope){
 			
 		});
 	};
+
+	$scope.addHost = function() {
+		$scope.currentEvent.hosts.push({name: "", email: ""});
+	};
+
+	$scope.addSpeaker = function() {
+		$scope.currentEvent.speakers.push({name: "", email: ""});
+	};
+
+	$scope.formatDate = function(date) {
+		return Date.parse(date).toString('dddd, MMMM d');
+	}
 });
