@@ -43,7 +43,7 @@ var groups = [{
 }, {
 	name: 'Disability Support Network',
 	abbr: 'DSN',
-	image: 'assets/bridge.png',
+	image: 'assets/Disability.png',
 	selected: true
 }, {
 	name: 'Green at Siemens',
@@ -62,7 +62,7 @@ var groups = [{
 	selected: true
 }, {
 	name: 'Veteran’s Resource Group',
-	abbr: 'Veterans'
+	abbr: 'Veterans',
 	image: '',
 	selected: true
 }, {
