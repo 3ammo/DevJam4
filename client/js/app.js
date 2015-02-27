@@ -37,42 +37,52 @@ var sites = [{
 
 var groups = [{
 	name: 'Siemens Corporate',
+	abbr: 'Siemens',
 	image: 'assets/Siemens.png',
 	selected: true
 }, {
 	name: 'Disability Support Network',
+	abbr: 'DSN',
 	image: 'assets/bridge.png',
 	selected: true
 }, {
-	name: 'GREEN',
+	name: 'Green at Siemens',
+	abbr: 'GREEN',
 	image: 'assets/Green.png',
 	selected: true
 }, {
 	name: 'Hispanic Resource Group',
-	image: '',
+	abbr: 'HRG',
+	image: 'assets/HRG.jpg',
 	selected: true
 }, {
 	name: 'NEW@Siemens',
+	abbr: 'New@S',
 	image: 'assets/NewS.jpg',
 	selected: true
 }, {
 	name: 'Veteran’s Resource Group',
+	abbr: 'Veterans'
 	image: '',
 	selected: true
 }, {
 	name: 'PRIDE',
+	abbr: 'PRIDE',
 	image: 'assets/pride.png',
 	selected: true
 }, {
-	name: 'Women’s Information Network',
+	name: 'Women’s Resource Group',
+	abbr: 'WRG',
 	image: 'assets/women.jpg',
 	selected: true
 }, {
 	name: 'Black Resource Group',
+	abbr: 'BRG',
 	image: 'assets/brg.png',
 	selected: true
 }, {
-	name: 'BRIDGE',
+	name: 'Bridge Network Employee Resource Group',
+	abbr: 'BRIDGE',
 	image: 'assets/bridge.jpg',
 	selected: true
 }];
@@ -91,7 +101,7 @@ var events = [{
 	endTime: Date.parse("10:00"),
 	image : 'assets/Siemens.png',
 	details: 'Very cool event',
-	location: 'Q1 2W31/32',
+	location: 'QI 2W31/32',
 	groups: groups[0],
 	attendence: 'no',
 	rating: 1
@@ -101,7 +111,7 @@ var events = [{
 	date : Date.parse("2015-04-10"),
 	startTime: Date.parse("13:00"),
 	endTime: Date.parse("15:00"),
-	image : 'assets/Siemens.png',
+	image : 'assets/women.jpg',
 	details: 'Very cool event',
 	location: 'Room 2E23',
 	groups: groups[7],
@@ -113,9 +123,9 @@ var events = [{
 	date : Date.parse("2015-04-03"),
 	startTime: Date.parse("13:00"),
 	endTime: Date.parse("15:00"),
-	image : 'assets/Siemens.png',
+	image : 'assets/NewS.jpg',
 	details: 'Very cool event',
-	location: 'Room 2E23',
+	location: 'QI 2W31-32',
 	groups: groups[4],
 	attendence: 'no',
 	rating: 1
@@ -132,39 +142,39 @@ var events = [{
 	attendence: 'no',
 	rating: 1
 }, {
-	title : "Engineering Week",
+	title : "Vehicle Showcase/Wheelchair Experience",
 	site : sites[0],
-	date : Date.parse("2015-02-04"),
-	startTime: Date.parse("13:00"),
-	endTime: Date.parse("15:00"),
-	image : 'assets/Siemens.png',
-	details: 'Very cool event',
-	location: 'Room 2E23',
-	groups: groups[0],
+	date : Date.parse("2015-07-10"),
+	startTime: Date.parse("11:00"),
+	endTime: Date.parse("13:00"),
+	image : 'assets/Disability.png',
+	details: 'Featuring several different wheelchair-accessible vehicle designs, including Charlie Carlson’s refurbished 1990 van fully equipped with hand controls for zero effort steering, gas, and braking from the wheelchair. Volunteers will spend half a day in a wheelchair to experience the challenges presented in each quad.',
+	location: 'QIII Parking Area',
+	groups: groups[1],
 	attendence: 'no',
 	rating: 1
 }, {
-	title : "Engineering Week",
+	title : "Earth Day",
 	site : sites[0],
-	date : Date.parse("2015-02-04"),
+	date : Date.parse("2015-04-22"),
 	startTime: Date.parse("13:00"),
 	endTime: Date.parse("15:00"),
-	image : 'assets/Siemens.png',
-	details: 'Very cool event',
-	location: 'Room 2E23',
-	groups: groups[0],
+	image : 'assets/Green.png',
+	details: 'Completely synergize resource sucking relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service.',
+	location: 'QI Cafe',
+	groups: groups[2],
 	attendence: 'no',
 	rating: 1
 }, {
-	title : "Engineering Week",
+	title : "New@S Team Building Event",
 	site : sites[0],
-	date : Date.parse("2015-02-04"),
-	startTime: Date.parse("13:00"),
+	date : Date.parse("2015-02-28"),
+	startTime: Date.parse("12:45"),
 	endTime: Date.parse("15:00"),
-	image : 'assets/Siemens.png',
-	details: 'Very cool event',
-	location: 'Room 2E23',
-	groups: groups[0],
+	image : 'assets/NewS.jpg',
+	details: 'New@S is pleased to invite you to participate in a teambuilding event at UCF! The goal of this event is for our members to develop relationships with each other and to promote collaboration between colleagues.',
+	location: 'UCF Low Ropes Challenge Course',
+	groups: groups[4],
 	attendence: "no",
 	rating: 1
 }];
